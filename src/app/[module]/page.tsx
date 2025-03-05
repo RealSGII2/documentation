@@ -1,7 +1,6 @@
 // import Markdown from 'react-markdown'
 import { readFile } from 'fs/promises';
 import { normalize } from 'path';
-import markdownProps from '@/app/markdown/props';
 import { existsSync } from 'fs';
 import { notFound } from 'next/navigation';
 import Markdown from '../markdown/Markdown';

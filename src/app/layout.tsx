@@ -7,11 +7,13 @@ import * as ProductPicker from './components/docs/ProductPicker';
 import ProductPopover from '../../docs/popover';
 
 const inter = Inter({
+    subsets: ['latin'],
     weight: ['400', '500', '700'],
     variable: '--font-sans',
 });
 
 const jetbrainsMono = JetBrains_Mono({
+    subsets: ['latin'],
     weight: ['400', '700'],
     variable: '--font-mono',
 });
