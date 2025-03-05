@@ -2,9 +2,9 @@ import type { Metadata } from 'next';
 import { Inter, JetBrains_Mono } from 'next/font/google';
 import styles from './layout.module.scss';
 import './globals.scss';
-import Logo from '../../docs/logo';
+import Logo from '../docs/logo';
 import * as ProductPicker from './components/docs/ProductPicker';
-import ProductPopover from '../../docs/popover';
+import ProductPopover from '../docs/popover';
 
 const inter = Inter({
     subsets: ['latin'],
