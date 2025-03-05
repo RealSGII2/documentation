@@ -10,7 +10,7 @@ export default async function ModuleLayout({ children, params }: { children: Rea
     module: string;
 }> }) {
     const { module: moduleName } = await params
-    const rootPage = parseTOC((await readFile(normalize(`${process.cwd()}/docs/${moduleName}/SUMMARY.toc`))).toString())
+    const rootPage = parseTOC((await readFile(normalize(`${process.cwd()}/src/docs/${moduleName}/SUMMARY.toc`))).toString())
 
     return (
         <div className={styles.root}>
