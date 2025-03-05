@@ -1,0 +1,36 @@
+# Client Configuration
+
+`temperatures-client.toml` allows you to control the GUI, disable warnings, and view debug information.
+
+## `debug`
+
+When enabled, debug information is shown on screen. This is useful for seeing exact temperature information, and how it's determined.
+
+**Command** `/temperatures debug [true/false]`
+
+**Default Value** `false`
+
+## `muteConfigWarnings`
+
+When a player joins, and their configuration doesn't list all loaded biomes, they'll see a warning in chat and a link to automatically populate the missing biomes.
+Setting this to `true` hides this warning.
+
+**Command** `/temperatures mute-config-warning [true/false]`
+
+**Default Value** `false`
+
+## `gui`
+
+This section configures the position of the temperature gauge. If you'd like a visual editor, it is recommended to run `/temperatures position`.
+
+## `gui.anchorPoint`
+
+The location on screen to base `offsetX` and `offsetY` off of.
+
+**Default Value** `"BOTTOM_RIGHT"`
+
+## `gui.offsetX` and `gui.offsetY`
+
+The amount to move the gauge from the `anchorPoint`.
+
+Note that depending on the value of `anchorPoint`, these values may be mirrored, eliminating the need for minus signs.

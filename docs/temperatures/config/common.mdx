@@ -1,0 +1,56 @@
+# Common Configuration
+
+`temperatures-common.toml` allows you to control how temperatures are calculated.
+
+## `biomeTemperatures`
+
+This is a list of biome entries, which are formatted as: `[biomeName, dayTemperature, nightTemperature]`. 
+
+The day or night temperature can be any number between -2 and 2, with decimals. Here are how the player reacts to certain temperatures:
+- `|x| = 3`: The player will require Flame or Ice breaker.
+- `2 > |x| >= 1.5`: The player requires Level II protection.
+- `1.5 > |x| >= 1.0`: The player requires Level I protection.
+- `1.0 > |x|`: The player requires no protection.
+
+When setting these values, remember to consider other determinants (i.e. rain, snow, or ambient blocks).
+
+**Default Value**
+```toml
+[]
+```
+
+**Example**
+```toml
+biomeTemperatures = [
+    ["minecraft:taiga", -1, -2],
+    ["minecraft:desert", 1, -1]
+]
+```
+
+## `warmBlocks`
+
+This option configures blocks that change the temperature of players around them. Despite its name, it allows you to lower temperatures as well.
+
+It is in the format of `[blockId, temperatureDifference]`. 
+
+Note that these do not stack. If a player is around a block that adds 0.5 temperature, and another one that adds 1.0 temperature, they will only receive 1.0 temperature.
+This behaviour changes if the player is surrounded by both warm and cool blocks: the sum will be considered.
+
+**Default Value & Example**
+```toml
+warmBlocks = [
+    ["minecraft:campfire", 0.5],
+    ["minecraft:fire", 1.0],
+    ["minecraft:lava", 1.0]
+]
+```
+
+## `diffInRain` and `diffInSnow`
+
+Determines how to offset the player's temperature in rain and snow, respectively.
+
+**Default Value**
+```toml
+diffInRain = -0.5
+diffInSnow = -0.5
+```

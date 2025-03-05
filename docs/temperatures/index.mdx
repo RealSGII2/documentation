@@ -1,0 +1,66 @@
+# Temperatures
+
+Legend of Zelda inspired temperature system for Minecraft.
+
+![A display of three states of the temperature gauge featured in the mod. Each of them contain a circular guage; the first is glowing red with the dial positioned far right. The second one is normal, with blue on the left, and orange on the right. Its dial is pointing up. The last one is glowing a pale blue with its dial pointing far left.](https://serve.realsgii2.dev/s/modrinth/temperatures/header.png)
+
+Brings the temperature system from modern Legend of Zelda games to Minecraft! This mod is intended to block progression by preventing access and maneuverability in specific biomes or dimensions. 
+
+<AnchorButton href='https://modrinth.com/mod/temperatures' size='large' variant='cta'>Download on Modrinth</AnchorButton>
+<AnchorButton href='https://github.com/RealSGII2/temperatures' size='large'>View source code</AnchorButton>
+
+## How It Works
+
+Each biome has a configurable temperature that fluctuates between day and night. Additionally, temperature can be configured to change in rain or snow, or when the player is around certain blocks.
+
+There are four levels of temperature: normal, uncomfortable, very uncomfortable, and extreme. To access uncomfortable temperatures, the player must have one level of the protection aginst that temperature (be it cold or not); for very uncomfortable, level two, and extreme, a specialised protection (named "Icebreaker" and "Flamebreaker"; Fire Resistance as a potion also works). 
+
+Protection is gained through drinking potions or wearing enchanted items. These can be mixed: for example, using a Cold Resistant chestplate and having the Cold Resistance I effect will allow you to survive very uncomfortable temperatures.
+
+The two extreme temperatures are burning and freezing. Burning occurs instantly in the Nether, while freezing occurs when going into water in cold regions.
+
+## Notice about Item Generation & Configuration
+
+This mod ships without a premade configuration, recipes, or loot modifiers (planned). As such, all biomes (except the Nether) have no temperature. Additionally, enchantments or potions will not spawn in the wild, and potions cannot be brewed.
+
+I recommend using a mod to add them yourself. For the configuration, you could fill it in manually (see the Configuration section below), or feed it through an AI to get it done quickly. 
+
+In the future, this mod will ship with default data and configuration.
+
+## Configuration
+
+There are several configurations you can do on this mod:
+- Change the day and night time temperatures for each biome;
+- Change the temperature if it's raining or snowing;
+- Add blocks that warm the player up (i.e. fire, campfires, and lava);
+- Change the position of the gauge rendered on players' screens.
+  - You can use `/temperatures position` in-game to visually position it.
+
+Temperatures are represented using a number between -2 and 2. Protections are as follows, whichever is true first:
+- `|x| = 3`, Icebreaker/Flamebreaker required
+- `|x| > 1.5`, Level II protection required
+- `|x| > 1`, Level I protection required
+- `|x| > 0`, no protection required
+
+By default, there is no data in the temperature config, making all of the biomes have a constant 0 temperature. You can run `/temperatures fill` or click the link when joining a world to prefill the configuration with all biomes the mod can find. These will not replace the configuration file, and only add to it. Thus, you can run it whenever you add new biomes.
+
+You can see the internal values used by the mod by running `/temperatures debug true`. This will display the temperature as a number, and which biomes are affecting it.
+
+## Mod Progress
+
+While most of the features of this mod are complete, there are still a couple things in progress:
+- Exposed API (just in case):
+  - Expose hooks that allow other mods to modify the way temperature is calculated;
+- Forbid enchantments and potion effects from being added together, similar to how Legend of Zelda actually works;
+- Tag support in configuration;
+- Blocks that cool down the player;
+- Premade configurations;
+- Option to add premade loot generators.
+
+This mod was also created specifically for a mod pack I'm making, so it may not contain every feature players may want. If you have an idea, feel free to suggest it on GitHub. 
+
+# Localisations
+
+The mod has the following locales supported:
+- English (en-us)
+- Swedish (sv-se)

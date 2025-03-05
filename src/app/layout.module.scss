@@ -1,0 +1,61 @@
+.appbar {
+    height: 56px;
+
+    background-color: #fdfdfe;
+    border-bottom: solid 1px #dfe4e9;
+
+    display: flex;
+    align-items: center;
+    
+    padding: 0 16px;
+
+    h1 {
+        font-size: 18px;
+        font-weight: 700;
+
+        .appbarSlash {
+            font-weight: 400;
+            opacity: 0.4;
+
+            margin: 0 6px;
+
+            user-select: none;
+        }
+
+        .appbarName {
+            font-weight: 500;
+        }
+    }
+}
+
+.pickerButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 36px;
+
+    padding: 4px 10px;
+
+    background-color: transparent;
+
+    margin-left: 6px;
+
+    border: none;
+    border-radius: 99px;
+
+    cursor: pointer;
+
+    svg {
+        opacity: 0.4;
+        margin-left: 4px;
+    }
+
+    &:hover {
+        background-color: #eef2f8;
+
+        svg {
+            opacity: 1;
+        }
+    }
+}

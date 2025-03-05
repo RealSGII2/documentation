@@ -1,0 +1,46 @@
+.ctaButton, .mutedButton {
+    height: 44px;
+    padding: 0 18px;
+
+    font-size: 14px;
+    font-weight: 500;
+
+    border: none;
+    border-radius: 8px;
+
+    transition: 85ms ease;
+
+    cursor: pointer;
+
+    &:active {
+        transition: none;
+    }
+
+    &:focus {
+        box-shadow: 0 0 0 2px #85bdff;
+    }
+}
+
+.ctaButton {
+    background-color: #0969da;
+    color: white;
+
+    margin-right: 8px;
+
+    &:hover:not(:active) {
+        background-color: lighten(#0969da, 4%);
+    }
+}
+
+.mutedButton {
+    background-color: transparent;
+    color: #59636e;
+
+    &:hover:not(:active) {
+        background-color: #eef2f8;
+    }
+
+    &:hover, &:active {
+        color: black;
+    }
+}

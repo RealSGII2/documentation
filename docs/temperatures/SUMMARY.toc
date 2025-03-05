@@ -1,0 +1,9 @@
+#root /temperatures
+- "Home" /temperatures
+- "Changelog" /temperatures/changelog
+- "Configuration" /temperatures/config
+    - "Common" /temperatures/config/common
+    - "Client" /temperatures/config/client
+    - "Server" /temperatures/config/server
+- "Modding" /temperatures/modding
+    - "Determinants" /temperatures/modding/determinants

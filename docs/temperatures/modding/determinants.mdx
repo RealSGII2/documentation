@@ -1,0 +1,92 @@
+# Determinants
+
+Determinants are part of the modular system that Temperatures uses to calculate temperature.
+
+## Making a Determinant
+
+All determinants implement `IDeterminant` and expose the following methods:
+
+```java
+package com.example.mod.registry.determinants;
+
+import dev.realsgii2.temperatures.api.registry.determinant.IDeterminant;
+import net.minecraft.world.entity.player.Player;
+
+public class CustomDeterminant implements IDeterminant {
+    @Override
+    public double getTemperature(Player player, double result) {
+        // Determinants work in a reducer system.
+        // We get the result of the last determinant as `result`, and
+        // can return what we should give to the next determinant.
+        // This example bumps the temperature up by 0.5.
+        //
+        // Of course, if you want an absolute value, just `return 0.5`.
+
+        return result + 0.5;
+    }
+
+    @Override
+    public int overridePriority(Player player, double oldResult, double newResult) {
+        // There may be a case where a determinant should be the only one considered.
+        // For example, if the player is in the Nether, the value is overridden to be
+        // at `3` no matter what. This is what does it.
+        //
+        // If this returns anything other than NO_OVERRIDE (-1), this result will be
+        // considered for an override. 
+        //
+        // After everything is computed, the determinant that returns the highest
+        // value from this function will be the result to use.
+
+        return NO_OVERRIDE;
+    }
+
+    @Override
+    public int order() {
+        // Sometimes your calculations require to be ran before or after others.
+        // For example, we check if the water in a biome is freezing by checking
+        // if `result` is less than -1. However, we don't want ambient blocks to 
+        // affect this, so we use `RUN_FIRST + 1` to make sure it runs before
+        // ambient blocks.
+        //
+        // This function allows you customise when this determinant is ran.
+        //
+        // Internally, determinants are sorted by the order before being ran.
+        // The smaller the value, the earlier it runs.
+        // It ships with default values:
+        // - RUN_FIRST
+        // - NO_ORDER
+        // - RUN_LAST
+
+        return NO_ORDER;
+    }
+}
+```
+
+If you'd like to see implementations, you can view the ones the mod provides:
+<Button>
+    See source of built-in determinants
+</Button>
+
+## Registering a Determinant
+
+Registering determinants can be done by using a `DeferredRegister`, like so:
+```java
+package com.example.mod.registry.determinants;
+
+import dev.realsgii2.temperatures.api.registry.determinant.IDeterminant;
+import dev.realsgii2.temperatures.api.registry.TemperatureRegistries;
+import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.RegistryObject;
+
+public class CustomDeterminantRegistry {
+    public static final DeferredRegister<IDeterminant> REGISTER = DeferredRegister.create(TemperatureRegistries.DETERMINANTS, "my_mod_id");
+
+    public static final CUSTOM_DETERMINANT = REGISTER.register("custom_determinant", CustomDeterminant::new);
+
+    // Like other registries, this one also needs to be registered to an event bus.
+    public static void register(IEventBus bus) {
+        REGISTER.register(bus);
+    }
+}
+```

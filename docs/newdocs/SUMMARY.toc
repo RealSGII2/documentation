@@ -1,0 +1,5 @@
+#root /newdocs
+- "Home" /newdocs
+- "New Features" /newdocs/features
+    - "Guides" /newdocs/features/guides
+- "Components" /newdocs/components
