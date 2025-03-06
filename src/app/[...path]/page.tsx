@@ -40,7 +40,7 @@ export async function generateStaticParams() {
             const parent = x.parentPath.slice(
                 process.cwd().length + '/src/docs'.length
             );
-            const parentBits = parent.replace(/\\/g, '/').split('/').slice(1);
+            const parentBits = parent.replace(/\\/g, '/').split('/');
 
             return {
                 module: normalize(parentBits.shift() ?? ''),

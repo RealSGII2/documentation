@@ -6,9 +6,6 @@ import { readFile } from 'fs/promises';
 import { normalize } from 'path';
 import { PageLink } from './layoutClient';
 import { unstable_cache } from 'next/cache';
-import * as ProductPicker from '../components/docs/ProductPicker';
-import ProductPopover from '../../docs/popover';
-import Logo from '@/docs/logo';
 import Appbar from '../appbar';
 
 export default async function ModuleLayout({
