@@ -5,8 +5,8 @@
     max-width: 100%;
     overflow: auto;
 
-    border: solid 1px #dfe4e9;
-    background-color: white;
+    border: solid 1px var(--border-raised);
+    background-color: var(--bg-raised);
     border-radius: 8px;
 
     margin: 12px 0;
@@ -29,7 +29,7 @@
     // background-color: white;
     // border-radius: 8px;
 
-    padding: 12px 0;
+    padding: 12px 0 0;
 
     display: table;
 
@@ -37,7 +37,11 @@
         display: table-row;
 
         &:hover {
-            background-color: #eeeeee;
+            background-color: var(--bg-active);
+
+            .line {
+                background-image: linear-gradient(to right, var(--bg-active) 80%, transparent), linear-gradient(to right, var(--bg-raised) 80%, transparent);
+            }
         }
 
         .line,
@@ -60,7 +64,7 @@
 
             color: #59636e;
 
-            background-image: linear-gradient(to right, rgba(#ffffff, 0.95) 80%, transparent);
+            background-image: linear-gradient(to right, var(--bg-raised) 80%, transparent);
 
             user-select: none;
         }
@@ -92,9 +96,9 @@
     color: #59636e;
 
     height: 32px;
-    background-color: #ffffff;
+    background-color: var(--bg-raised);
 
-    border-bottom: solid 1px #dfe4e9;
+    border-bottom: solid 1px var(--border-raised);
     border-radius: 8px 8px 0 0;
 
     + pre {

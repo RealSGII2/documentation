@@ -1,6 +1,6 @@
 import { useMDXComponents } from '@/mdx-components';
-import { MDXRemote } from 'next-mdx-remote/rsc';
+import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
 
-export default function Markdown({ source }: { source: string }) {
-    return <MDXRemote source={source} components={useMDXComponents({})} />;
+export default function Markdown({ source }: { source: MDXRemoteSerializeResult }) {
+    return <MDXRemote {...source} components={useMDXComponents({})} />;
 }

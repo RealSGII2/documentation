@@ -1,0 +1,110 @@
+@use '../layout.module.scss';
+
+.root {
+    display: flex;
+    gap: 24px;
+
+    aside {
+        flex: 2;
+    }
+
+    main {
+        flex: 3;
+
+        max-width: 700px;
+
+        // background-color: #fee;
+    }
+}
+
+.pageList {
+    padding: 16px;
+
+    width: 320px;
+    margin-left: auto;
+
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+
+    hr {
+        margin: 6px 36px 6px 0;
+
+        border: none;
+        border-top: solid 1px var(--bg-active);
+    }
+
+    ul {
+        border-left: solid 1px var(--border);
+    }
+
+    li {
+        display: grid;
+        grid-template-columns: 1fr 32px;
+        grid-template-rows: repeat(2, auto);
+        grid-gap: 2px;
+
+        &.expanded > button svg {
+            transform: rotate(180deg);
+        }
+
+        ul {
+            grid-area: 2 / 1 / 2 / 3;
+            padding-left: 6px;
+            margin-left: 16px;
+            margin-bottom: 2px;
+        }
+
+        button, a {
+            display: flex;
+            align-items: center;
+
+            height: 32px;
+
+            border: none;
+            border-radius: 6px;
+
+            font-size: 14px;
+            font-weight: 500;
+
+            background-color: transparent;
+            color: var(--fg-secondary);
+
+            cursor: pointer;
+
+            &:hover {
+                background-color: var(--bg-active);
+            }
+        }
+
+        button {
+            justify-content: center;
+            grid-area: 1 / 2;
+
+            width: 32px;
+
+            svg {
+                transition: transform 175ms ease;
+            }
+        }
+
+        a {
+            padding-left: 12px;
+
+            text-decoration: none;
+        }
+
+        &.selected > a {
+            background-color: var(--bg-brand-active);
+            color: var(--fg-brand);
+        }
+
+        // &:not(:has(button)) {
+        //     display: block;
+        // }
+
+        &::marker {
+            content: '';
+        }
+    }
+}

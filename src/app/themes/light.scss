@@ -1,0 +1,21 @@
+:root {
+    --bg-body: #fdfdfe;
+    --bg-nav: #fdfdfe;
+    --bg-raised: white;
+
+    --bg-active: #{change-color(#c5d5e6, $alpha: 0.25)};
+
+    --border: #dfe4e9;
+    --border-radius: var(--border);
+
+    --fg-primary: black;
+    --fg-secondary: #59636e;
+
+    --fg-brand: #0969da;
+    --bg-brand-hover: #0a72ee;
+    --bg-brand-active: #54bdff22;
+
+    --splash: radial-gradient(ellipse 35vw 70vh at -15% 35%, #{lighten(#ddf4ff, 3%)}, transparent);
+
+    --picker-shadow: 0 3.2px 7.2px 0 rgba(0,0,20,.07),0 .6px 1.8px 0 rgba(0,0,20,.05);;
+}

@@ -1,4 +1,5 @@
 #root /temperatures
+#name Temperatures
 - "Home" /temperatures
 - "Changelog" /temperatures/changelog
 - "Configuration" /temperatures/config
@@ -7,3 +8,8 @@
     - "Server" /temperatures/config/server
 - "Modding" /temperatures/modding
     - "Determinants" /temperatures/modding/determinants
+    
+---
+- "Download on Modrinth" newtab:https://modrinth.com/mod/temperatures
+- "View source code" newtab:https://github.com/realsgii2/temperatures
+- "View issues" newtab:https://github.com/realsgii2/temperatures/issues

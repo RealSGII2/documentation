@@ -17,7 +17,7 @@ export default async function CodeBlock({
     const { grammarState: _, ...tokens } = await codeToTokens(String(code), {
         // lang: language as BundledLanguage,
         lang: language as BundledLanguage,
-        theme: 'github-light',
+        theme: 'github-dark',
     });
 
     return (

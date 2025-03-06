@@ -1,4 +1,5 @@
 #root /newdocs
+#name DocEngine
 - "Home" /newdocs
 - "New Features" /newdocs/features
     - "Guides" /newdocs/features/guides

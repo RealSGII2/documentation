@@ -4,11 +4,11 @@ import {
     GuidePageContext,
     GuidePageProvider,
 } from '@/app/context/GuidePageContext';
-// import markdownProps from '@/app/markdown/props';
 import { useMemo, useState } from 'react';
-// import Markdown from 'react-markdown';
 import styles from './page.module.scss';
-import Markdown from '@/app/markdown/Markdown';
+import Markdown from '../markdown/Markdown';
+import { MDXRemoteSerializeResult } from 'next-mdx-remote';
+// import { PageMarkdown } from './pageInner';
 
 function splitSections(contents: string) {
     const lines = contents.split('\n');
@@ -40,12 +40,12 @@ function pullPragma(contents: string) {
     return properties;
 }
 
-export default function PageClient({ contents }: { contents: string }) {
+export default function PageClient({ contents }: { contents: MDXRemoteSerializeResult; }) {
     const [page, setPage] = useState(-1);
     const guidePage = new GuidePageContext(page, setPage);
 
-    const sections = useMemo(() => splitSections(contents), [contents]);
-    const pragmas = useMemo(() => pullPragma(contents), [contents]);
+    const sections = useMemo(() => splitSections(contents.compiledSource), [contents]);
+    const pragmas = useMemo(() => pullPragma(contents.compiledSource), [contents]);
 
     return (
         <GuidePageProvider value={guidePage}>
@@ -90,9 +90,6 @@ export default function PageClient({ contents }: { contents: string }) {
                     )} */}
                 </>
             ) : (
-                // <Markdown className='docbody' {...markdownProps}>
-                //     {contents}
-                // </Markdown>
                 <article className='docbody'>
                     <Markdown source={contents} />
                 </article>

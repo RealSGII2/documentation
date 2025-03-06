@@ -1,8 +1,8 @@
 .appbar {
     height: 56px;
 
-    background-color: #fdfdfe;
-    border-bottom: solid 1px #dfe4e9;
+    background-color: var(--bg-nav);
+    border-bottom: solid 1px var(--border);
 
     display: flex;
     align-items: center;
@@ -46,13 +46,16 @@
 
     cursor: pointer;
 
+    color: inherit;
+
     svg {
         opacity: 0.4;
         margin-left: 4px;
+        color: inherit;
     }
 
     &:hover {
-        background-color: #eef2f8;
+        background-color: var(--bg-active);
 
         svg {
             opacity: 1;

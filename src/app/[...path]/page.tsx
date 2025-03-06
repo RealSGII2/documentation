@@ -3,23 +3,18 @@ import { join, normalize } from 'path';
 import { existsSync } from 'fs';
 import { notFound } from 'next/navigation';
 import PageClient from './pageClient';
+import { serialize } from 'next-mdx-remote/serialize';
 
-type DocPageParams = Promise<{ module: string; path: string[] }>;
+type DocPageParams = Promise<{ path: string[] }>;
 
 async function pullContents(params: DocPageParams) {
-    const { module: moduleName, path: docPath } = await params;
-    // const pagePath = normalize(
-    //     `${process.cwd()}/src/docs/${moduleName}/${docPath.join('/')}.mdx`
-    // );
+    const { path } = await params;
 
-    const pagePath = join(
-        process.cwd(),
-        'src',
-        'docs',
-        moduleName,
-        ...docPath.slice(0, -1),
-        docPath[docPath.length - 1] + '.mdx'
-    );
+    const basePath = join(process.cwd(), 'src', 'docs', ...path.slice(0, -1));
+    let pagePath = join(basePath, path[path.length - 1] + '.mdx');
+
+    if (!existsSync(pagePath))
+        pagePath = join(basePath, path[path.length - 1], 'index.mdx');
 
     if (!existsSync(pagePath)) return notFound();
 
@@ -27,20 +22,8 @@ async function pullContents(params: DocPageParams) {
 }
 
 export default async function DocPage({ params }: { params: DocPageParams }) {
-    // const paths = generateStaticParams();
-
-    // return (
-    //     <p
-    //         dangerouslySetInnerHTML={{
-    //             __html: (await paths())
-    //                 .map(x => `${x.module}:${x.path.join('/')}`)
-    //                 .join('<br/><br/>'),
-    //         }}
-    //     ></p>
-    // );
-
     const pageContents = await pullContents(params);
-    return <PageClient contents={pageContents} />;
+    return <PageClient contents={await serialize(pageContents)} />;
 }
 
 export async function generateStaticParams() {

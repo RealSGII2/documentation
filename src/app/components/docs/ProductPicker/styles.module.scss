@@ -1,9 +1,9 @@
 .content {
-    background-color: #ffffff;
-    border: solid 1px #dfe4e9;
+    background-color: var(--bg-body);
+    border: solid 1px var(--border);
     border-radius: 12px;
 
-    box-shadow: 0 3.2px 7.2px 0 rgba(0,0,20,.07),0 .6px 1.8px 0 rgba(0,0,20,.05);
+    box-shadow: var(--picker-shadow);
 
     padding: 8px;
 
@@ -34,7 +34,7 @@
     text-decoration: none;
 
     &:hover {
-        background-color: #eef2f8;
+        background-color: var(--bg-active);
     }
 
     &:focus {
@@ -55,11 +55,11 @@
     }
 
     h1, h2 {
-        color: black;
+        color: var(--fg-primary);
     }
 
     p {
         font-size: 14px;
-        color: #59636e;
+        color: var(--fg-secondary);
     }
 }

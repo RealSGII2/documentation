@@ -1,0 +1,25 @@
+@use 'sass:color';
+
+:root {
+    --bg-body: #191b20;
+    --bg-nav: #{darken(#191b20, 2%)};
+    --bg-raised: #{lighten(#191b20, 6%)};
+
+    --bg-active: #{change-color(#3d444d, $alpha: 0.35)};
+
+    --border: #{lighten(#191b20, 8%)};
+    --border-raised: #{lighten(#191b20, 12%)};
+
+    --fg-primary: rgb(235, 235, 235);
+    --fg-secondary: #9198a1;
+
+    --fg-brand: #4493f8;
+    --bg-brand: #316dca;
+    --bg-brand-hover: #3d7cdd;
+    --bg-brand-active: #1e2735;
+    
+    // --splash: radial-gradient(ellipse 35vw 70vh at -15% 35%, #{darken(#173a6377, 5%)}, transparent);
+    --splash: none;
+
+    --picker-shadow: 0 3.2px 7.2px 0 rgba(0,0,20,.17),0 .6px 1.8px 0 rgba(0,0,20,.15);
+}
