@@ -23,7 +23,9 @@ async function pullContents(params: DocPageParams) {
 
 export default async function DocPage({ params }: { params: DocPageParams }) {
     const pageContents = await pullContents(params);
-    return <PageClient contents={await serialize(pageContents)} />;
+    return <PageClient contents={await serialize(pageContents, {
+        mdxOptions: { development: process.env.NODE_ENV === 'development' },
+    })} />;
 }
 
 export async function generateStaticParams() {

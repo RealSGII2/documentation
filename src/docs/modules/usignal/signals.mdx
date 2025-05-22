@@ -1,0 +1,66 @@
+# Signals
+
+μSignal was originally built to support same-sided events. Learn how to use them here.
+
+## What's the difference between a `SignalNode` and `Signal`?
+
+SignalNodes *only* handle connections, and do not support firing or viewing its connections.
+This was designed so that libraries could expose an event without allowing users to fire it.
+
+## Using Signals
+
+To create a signal, use the `new()` constructor. You may ignore the `flags` parameter for now.
+Signals behave the same as nodes, with one addition: it exposes a `:Fire()` method you can use to call
+all of its listeners.
+
+```lua
+local signal = uSignal.new()
+
+signal += function(arg)
+    print("Hello, " + arg + "!")
+end
+
+-- Classic syntax
+signal:Fire("Argument")
+
+-- CS syntax
+signal("Argument")
+```
+
+## Dispatch Mode
+
+Roblox is in the process of updating all of their events to be deferred instead of being ran immediately.
+In short, this causes all events to fire at once, at the end of a frame.
+
+If you'd like to use this style of event, you can pass in the `DISPATCH` flag to `uSignal.new()`: 
+
+```lua
+local signal = uSignal.new(uSignal.DISPATCH)
+```
+
+## Other Supported Operations
+
+Signals expose their connections publicly. You may access them using `Signal.Connections`. Alternatively,
+you can iterate over the signal object itself:
+
+```lua
+local signal = uSignal.new()
+
+signal += listener1
+signal += listener2
+
+for _, listener in signal do
+    print("Listener:", listener)
+end
+```
+
+You may also get the number of listeners by using the length operator:
+
+```lua
+local signal = uSignal.new()
+
+print(#signal) -- 0
+
+signal += listener
+print(#signal) -- 1
+```

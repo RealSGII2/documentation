@@ -8,15 +8,15 @@ import React, { useEffect, useState, useMemo } from 'react';
 import * as mdx from '@mdx-js/react';
 import { MDXRemoteProps } from 'next-mdx-remote';
 
-import jsxRuntime from 'react/jsx-runtime';
+import _jsxRuntime from 'react/jsx-runtime';
 
-// let jsxRuntime
-// if (process.env.NODE_ENV === 'production') {
-//     jsxRuntime = await import('react/jsx-runtime');
-// }
-// else {
-//     jsxRuntime = await import('react/jsx-dev-runtime');
-// }
+let jsxRuntime = _jsxRuntime
+if (process.env.NODE_ENV === 'production') {
+    jsxRuntime = await import('react/jsx-runtime');
+}
+else {
+    jsxRuntime = await import('react/jsx-dev-runtime');
+}
 
 /**
  * Renders compiled source from next-mdx-remote/serialize.
@@ -55,7 +55,7 @@ export function MDXRemote({ compiledSource, frontmatter, scope, components = {},
     }
     // wrapping the content with MDXProvider will allow us to customize the standard
     // markdown components (such as "h1" or "a") with the "components" object
-    const content = (React.createElement(mdx.MDXProvider, { components: components },
+    const content = (React.createElement(mdx.MDXProvider, { components: components, },
         React.createElement(Content, null)));
     // If lazy = true, we need to render a wrapping div to preserve the same markup structure that was SSR'd
     return lazy ? React.createElement("div", null, content) : content;

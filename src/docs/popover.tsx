@@ -19,6 +19,13 @@ export default function ProductPopover() {
                     <p>Legend of Zelda inspired temperature system</p>
                 </div>
             </Product>
+            <Product href='/modules'>
+                <TemperatureLogo />
+                <div>
+                    <h2>Roblox Modules</h2>
+                    <p>Various modules of mine for Roblox</p>
+                </div>
+            </Product>
         </>
     );
 }

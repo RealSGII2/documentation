@@ -1,0 +1,34 @@
+# μSignal
+
+A fast signal and event library with syntax inspired by C#.
+
+<AnchorButton variant="cta">Get model</AnchorButton>
+<AnchorButton>View DevForum post</AnchorButton>
+<AnchorButton>View source</AnchorButton>
+
+## Introduction
+
+Everything in this library is a `SignalNode`, which allows connections to be added and removed.
+There are two different syntaxes: *classic*, and *cs*:
+
+```lua
+-- Classic syntax
+signal:Connect(listener)
+signal:Disconnect(listener)
+signal:Once(listener)
+
+-- CS syntax
+signal += listener -- Connect
+signal -= listener -- Disconnect
+signal %= listener -- Once
+signal *= listener -- Also once
+```
+
+Note that `SignalNode`s may only be connected to. If you want to fire them, look into the following classes:
+- **Signals** are intended to be used on a singular network side, like a BindableEvent. 
+- **Events** are intended to cross the network boundary, like a RemoteEvent.
+
+### Select a class to view.
+
+<AnchorButton href="/modules/usignal/signals" target="_self" size='large'>uSignal</AnchorButton>
+<AnchorButton href="/modules/usignal/events" target="_self" size='large'>uEvent</AnchorButton>

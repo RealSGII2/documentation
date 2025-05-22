@@ -1,0 +1,99 @@
+# Signals
+
+μSignal supports compressed network events, both reliable and unreliable. Learn how to use them here.
+
+## What's the difference between `SignalNode`, `Signal`, and `Event`?
+
+SignalNodes *only* handle connections, and do not support firing or viewing its connections.
+This was designed so that libraries could expose an event without allowing users to fire it.
+
+Signals may only be used on one side of the network. For example, the client cannot listen to a server event.
+Events may be used on both sides of the network.
+
+### Compression
+
+Events also compress their data using the buffer API, reducing latency and network resources. To read more, view
+the Buffers page.
+
+<AnchorButton href="/modules/usignal/buffers" target="_self">Learn more about Buffers</AnchorButton>
+
+## Using Events
+
+To create an event, use the `event()` constructor. By default, this will create a *reliable* event.
+If you need an unreliable event, pass in the `UNRELIABLE` flag.
+
+```lua
+local reliable = uSignal.event()
+local unreliable = uSignal.event(uSignal.UNRELIABLE)
+```
+
+Events are fired differently than most network libraries. Their syntax is almost the exact same as a
+Signal. μSignal will automatically determine the network side you're firing from, and call the correct
+method internally.
+
+This method supports three different overloads:
+- Passing in a single player as the first argument will only fire for that client
+- Passing in a table of players will fire for those clients only
+- Passing in anything else as the first argument will fire for all clients
+
+The overloads are meaningless when firing from the client, and will pass all their
+arguments to the server regardless.
+
+```lua
+-- Classic syntax
+event:Fire(1, 2, "hello", ...)
+
+-- CS syntax
+event(1, 2, "hello", ...)
+
+-- Player detection
+event("World") -- All clients
+event(game.Players.Player1, "World") -- Only Player1
+event({ game.Players.Player1, game.Players.Player2 }, "World") -- Both Player1 and Player2
+```
+
+## Dispatch Mode
+
+Roblox is in the process of updating all of their events to be deferred instead of being ran immediately.
+In short, this causes all events to fire at once, at the end of a frame.
+
+If you'd like to use this style of event, you can pass in the `DISPATCH` flag to `uSignal.event()`: 
+
+```lua
+local event = uSignal.event(uSignal.DISPATCH)
+```
+
+### Using Multiple flags
+
+If you need an unreliable event that also uses the dispatch system, add the flags together:
+
+```lua
+local event = uSignal.event(uSignal.DISPATCH + uSignal.EVENT) 
+```
+
+## Other Supported Operations
+
+Evemts expose their connections publicly. You may access them using `Event.Connections`. Alternatively,
+you can iterate over the event object itself:
+
+```lua
+local event = uSignal.event()
+
+event += listener1
+event += listener2
+
+for _, listener in event do
+    print("Listener:", listener)
+end
+```
+
+You may also get the number of listeners by using the length operator:
+
+```lua
+local event = uSignal.event()
+
+print(#event) -- 0
+
+event += listener
+print(#event) -- 1
+```

@@ -1,0 +1,61 @@
+# Signals
+
+μSignal supports compressed network events via μBuffer. Internally, it uses the buffer library to compress data.
+
+## Data Structure
+
+μBuffer can represent most data objects in binary, excluding Instances and functions. functions are removed
+from buffers, and Instances are set aside and are referenced. 
+
+```txt
+Enum uBuffer.TYPE
+0 = STRING
+1 = NUMBER
+2 = BOOL
+3 = ARRAY
+4 = DICT
+5 = INSTANCE
+
+Type uBuffer.Value
+OFFSET TYPE            DESCRIPTION
+0x00   uBuffer.TYPE    The type of value
+
+(String)
+0x03   uint8           String length
+0x0b   string          String value
+
+(Number)
+0x03   float64         Number value
+
+(Bool)
+0x03   uint1           Bool value
+
+(Array)
+0x03   uint8           Array length
+0x0b   uBuffer.Value[] Array values
+
+(Dict)
+0x03   uint8           Dictionary length
+0x0b   uBuffer.KV[]    Dictionary values
+
+(Instance)
+0x03   uint8           Instance table index
+
+Type uBuffer.KV
+OFFSET TYPE            DESCRIPTION
+0x00   uint8           Key length (= x)
+0x08   string          Key value
+0x08+x uBuffer.Value   Value
+```
+
+### Instances
+
+Due to the security restrictions on Instances, they are simply referenced by the buffer.
+Its `Instance table index` refers to the index of the instance in the Instances parameter
+in the encoding result.
+
+## API
+
+μBuffer supports an API that automatically seeks when reading or writing data.
+
+<AnchorButton href="/modules/usignal/buffers/api" target="_self">View μBuffer API</AnchorButton>

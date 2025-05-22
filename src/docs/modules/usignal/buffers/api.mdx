@@ -1,0 +1,99 @@
+# Buffer API
+
+μSignal exposes its Buffer API.
+
+# Constructors
+
+## `uBuffer.new() -> uBuffer`
+
+Create a blank Buffer with 1500 bytes reserved.
+
+## `uBuffer.of(b: Buffer) -> uBuffer`
+
+Wraps the μBuffer API around an existing Buffer.
+
+# Instance Methods
+
+## `uBuffer:GetSeek() -> number`
+
+Returns the cursor position in bits.
+
+## `uBuffer:Scrub(bit: number)`
+
+Sets the cursor position in bits.
+
+## `uBuffer:ReadInt(bits: number) -> number`
+
+Reads the next [bits] bits as an unsigned integer.
+
+## `uBuffer:ReadFloat() -> number`
+
+Reads a 64 bit float.
+
+## `uBuffer:ReadString(bits: number) -> string`
+
+Reads the next [bits] bits as a string.
+
+## `uBuffer:WriteInt(bits: number, value: number)`
+
+Writes the next [bits] bits as an unsigned integer.
+
+## `uBuffer:WriteFloat(value: number)`
+
+Writes a 64 bit float.
+
+## `uBuffer:WriteString(value: string)`
+
+Writes a string.
+
+## `uBuffer:Append(other: uBuffer)`
+
+Copies [other] to the end of this buffer.
+
+## `uBuffer:Length() -> number`
+
+Gets the length of this buffer.
+
+## `uBuffer:Finalise() -> Buffer`
+
+Shrinks this buffer to its smallest possible size, then casts it to a native buffer.
+
+# Global Methods
+
+## `uBuffer.typeof(item: any) -> number`
+
+Returns the `uBuffer.TYPE` of [item].
+
+## `uBuffer.stripTable(t: any) -> any`
+
+Returns a table compatible with this library.
+
+## `uBuffer.encodeValue(value: any) -> EncodeResult`
+
+Encodes a compatible value as described in the Data Structure section.
+
+**Returns**
+```luau
+type EncodeResult = {
+    Raw: uBuffer;            -- The uBuffer created.
+    Result: Buffer;          -- A native buffer with the same value as Raw
+    Length: number;          -- The length of the buffer
+    Instances: { Instance }; -- The instances used as referenced in the buffer.
+}
+```
+
+## `uBuffer.decodeValue(result: Buffer, instances: { Instance }) -> DecodeResult`
+
+Decodes a buffer previously encoded using `encodeValue`:
+```lua
+local encoded = uBuffer.encodeValue(...)
+local undone = uBuffer.decodeValue(encoded.Result, encoded.Instances)
+```
+
+**Returns**
+```luau
+type DecodeResult = {
+    Result: any;  -- The decoded object
+    Seek: number; -- The amount of bits traversed
+}
+```
