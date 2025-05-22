@@ -66,4 +66,13 @@
 
         font-size: 15px;
     }
+
+    &.square {
+        padding: 0;
+        width: 36px;
+
+        &.large {
+            width: 42px;
+        }
+    }
 }

@@ -1,12 +1,12 @@
 import { ReactNode } from 'react';
-import styles from './layout.module.scss';
+// import styles from './layout.module.scss';
 import '@/app/util/tocParser';
 import parseTOC from '@/app/util/tocParser';
 import { readFile } from 'fs/promises';
 import { normalize } from 'path';
-import { PageLink } from './layoutClient';
+import Root from './layoutClient';
 import { unstable_cache } from 'next/cache';
-import Appbar from '../appbar';
+// import Appbar from '../appbar';
 
 export default async function ModuleLayout({
     children,
@@ -37,23 +37,23 @@ export default async function ModuleLayout({
 
     return (
         <>
-            <Appbar title={rootPage.name} />
+            <Root rootPage={rootPage}>
+                {children}
+            </Root>
+            {/* <Appbar title={rootPage.name} />
 
             <div className={styles.root}>
-                <aside>
-                    <ul className={styles.pageList}>
-                        {rootPage.children.map((x, i) =>
-                            x.type == 'link' ? (
-                                <PageLink data={x} key={x.href} />
-                            ) : (
-                                <hr key={i} />
-                            )
-                        )}
-                    </ul>
-                </aside>
+                <PageNavAside rootPage={rootPage} />
+
+                <div className={styles.scrim} />
+
                 <main>{children}</main>
-                <aside></aside>
-            </div>
+                <aside>
+                    <p>
+                        (table of contents here)
+                    </p>
+                </aside>
+            </div> */}
         </>
     );
 }

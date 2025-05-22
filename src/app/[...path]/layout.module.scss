@@ -15,6 +15,90 @@
 
         // background-color: #fee;
     }
+
+    @media screen and (min-width: 1000px) and (max-width: 1400px) {
+        aside:first-child {
+            flex: 1;
+            max-width: 400px;
+        }
+
+        aside:last-child {
+            display: none;
+        }
+
+        main {
+            margin-right: 64px;
+        }
+    }
+
+    @media screen and (max-width: 1000px) {
+        & {
+            justify-content: center;
+        }
+
+        aside:first-child {
+            position: fixed;
+            z-index: 20;
+
+            top: 0;
+            left: 0;
+            right: 80px;
+            bottom: 0;
+
+            transform: translateX(calc(-100% - 80px));
+
+            background-color: var(--bg-body);
+            border-right: solid 1px var(--border);
+
+            transition: 275ms ease;
+            transition-property: transform;
+
+            nav {
+                width: 100%;
+            }
+        }
+
+        &.menuOpen aside:first-child {
+            transform: none;
+
+            + .scrim {
+                opacity: 1;
+                pointer-events: initial;
+            }
+        }
+
+        .scrim {
+            position: fixed;
+            inset: 0;
+            z-index: 19;
+
+            background-color: rgba(0 0 0 / 50%);
+
+            opacity: 0;
+            pointer-events: none;
+            
+            transition: 275ms ease;
+            transition-property: opacity;
+        }
+
+        aside:last-child {
+            display: none;
+        }
+
+        main {
+            padding: 30px;
+            max-width: min(1000px, 100%);
+
+            article {
+                width: 100%;
+                max-width: 100%;
+
+                > h1:first-child {
+                    margin-top: 0;
+                }
+            }
+        }
+    }
 }
 
 .pageList {
@@ -26,6 +110,9 @@
     display: flex;
     flex-direction: column;
     gap: 2px;
+
+    position: sticky;
+    top: 72px;
 
     hr {
         margin: 6px 36px 6px 0;
@@ -55,7 +142,8 @@
             margin-bottom: 2px;
         }
 
-        button, a {
+        button,
+        a {
             display: flex;
             align-items: center;
 
