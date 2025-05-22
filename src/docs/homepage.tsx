@@ -26,8 +26,34 @@ export default function Home() {
                         <p>Legend of Zelda inspired temperature system</p>
                     </div>
                 </Product>
+                <Product href='/modules'>
+                    <RobloxLogo />
+                    <div>
+                        <h2>Roblox Modules</h2>
+                        <p>Various modules of mine for Roblox</p>
+                    </div>
+                </Product>
             </div>
         </>
+    );
+}
+
+export function RobloxLogo() {
+    return (
+        <svg
+            style={{ minWidth: 48, borderRadius: 8 }}
+            width='48'
+            height='48'
+            viewBox='0 0 16 16'
+            fill='none'
+            xmlns='http://www.w3.org/2000/svg'
+        >
+            <rect width='16' height='16' fill='#305CFF' />
+            <path
+                d='M11.5355 14.1237L1.87628 11.5355L4.46447 1.87628L14.1237 4.46447L11.5355 14.1237ZM6.93934 6.16288L6.16288 9.06066L9.06066 9.83712L9.83712 6.93934L6.93934 6.16288Z'
+                fill='white'
+            />
+        </svg>
     );
 }
 
@@ -271,9 +297,9 @@ export function TemperatureLogo() {
 export function DocsLogo() {
     return (
         <svg
-        style={{ minWidth: 48, borderRadius: 8 }}
-        width='48'
-        height='48'
+            style={{ minWidth: 48, borderRadius: 8 }}
+            width='48'
+            height='48'
             viewBox='0 0 16 16'
             fill='none'
             xmlns='http://www.w3.org/2000/svg'

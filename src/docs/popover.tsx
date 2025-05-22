@@ -1,5 +1,5 @@
 import { Product } from '@/app/components/docs/ProductPicker';
-import { DocsLogo, TemperatureLogo } from './homepage';
+import { DocsLogo, TemperatureLogo, RobloxLogo } from './homepage';
 
 export default function ProductPopover() {
     return (
@@ -20,7 +20,7 @@ export default function ProductPopover() {
                 </div>
             </Product>
             <Product href='/modules'>
-                <TemperatureLogo />
+                <RobloxLogo />
                 <div>
                     <h2>Roblox Modules</h2>
                     <p>Various modules of mine for Roblox</p>

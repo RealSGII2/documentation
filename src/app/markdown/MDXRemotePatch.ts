@@ -10,7 +10,7 @@ import { MDXRemoteProps } from 'next-mdx-remote';
 
 import _jsxRuntime from 'react/jsx-runtime';
 
-let jsxRuntime = _jsxRuntime
+let jsxRuntime = _jsxRuntime as typeof import('react/jsx-runtime') | typeof import('react/jsx-dev-runtime')
 if (process.env.NODE_ENV === 'production') {
     jsxRuntime = await import('react/jsx-runtime');
 }
