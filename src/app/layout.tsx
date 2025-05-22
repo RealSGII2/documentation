@@ -21,7 +21,9 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
     title: 'Home',
     description: 'Documentation for my various projects.',
-    applicationName: 'RealSGII2 Docs',
+    openGraph: {
+        siteName: 'RealSGII2 Docs'
+    }
 };
 
 export default function RootLayout({
