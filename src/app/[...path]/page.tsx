@@ -43,8 +43,13 @@ export async function generateMetadata({
     const data = await pullContents(params);
 
     const lines = data.split('\n');
-    const title = lines[0].substring(2);
-    const description = lines[1];
+    const title = (lines.shift() as string).substring(2);
+    let description: string | undefined = undefined;
+
+    for (let i = 0; i < 3; i++) {
+        description = lines.shift()
+        if (description && description.length != 0 && !description.startsWith('!')) break
+    }
 
     return {
         title,
