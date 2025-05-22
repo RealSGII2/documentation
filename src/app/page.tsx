@@ -5,7 +5,7 @@ import Appbar from './appbar';
 export default function Home() {
     return (
         <>
-            <Appbar title='RealSGII2 Docs' onButtonClick={() => {}} />
+            <Appbar title='RealSGII2 Docs' />
 
             <div className={styles.wrapper}>
                 <div className={styles.page + ' docbody'}>

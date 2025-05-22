@@ -14,7 +14,7 @@ export default function Appbar({
     onButtonClick,
 }: {
     title: ReactNode;
-    onButtonClick: () => void;
+    onButtonClick?: () => void;
 }) {
     const isMobile = useBreakpoint(1000);
 
@@ -76,7 +76,7 @@ export function MobileNavAppbar({
     onButtonClick,
 }: {
     title: ReactNode;
-    onButtonClick: () => void;
+    onButtonClick?: () => void;
 }) {
     return (
         <nav className={cx(styles, 'appbar', 'mobile')}>
