@@ -4,10 +4,11 @@ import { existsSync } from 'fs';
 import { notFound } from 'next/navigation';
 import PageClient from './pageClient';
 import { serialize } from 'next-mdx-remote/serialize';
+import { Metadata } from 'next';
 
-type DocPageParams = Promise<{ path: string[] }>;
+export type DocPageParams = Promise<{ path: string[] }>;
 
-async function pullContents(params: DocPageParams) {
+export async function pullContents(params: DocPageParams) {
     const { path } = await params;
 
     const basePath = join(process.cwd(), 'src', 'docs', ...path.slice(0, -1));
@@ -23,9 +24,32 @@ async function pullContents(params: DocPageParams) {
 
 export default async function DocPage({ params }: { params: DocPageParams }) {
     const pageContents = await pullContents(params);
-    return <PageClient contents={await serialize(pageContents, {
-        mdxOptions: { development: process.env.NODE_ENV === 'development' },
-    })} />;
+    return (
+        <PageClient
+            contents={await serialize(pageContents, {
+                mdxOptions: {
+                    development: process.env.NODE_ENV === 'development',
+                },
+            })}
+        />
+    );
+}
+
+export async function generateMetadata({
+    params,
+}: {
+    params: DocPageParams;
+}): Promise<Metadata> {
+    const data = await pullContents(params);
+
+    const lines = data.split('\n');
+    const title = lines[0].substring(2);
+    const description = lines[1];
+
+    return {
+        title,
+        description,
+    };
 }
 
 export async function generateStaticParams() {
