@@ -8,7 +8,7 @@ import { Metadata } from 'next';
 
 export type DocPageParams = Promise<{ path: string[] }>;
 
-export async function pullContents(params: DocPageParams) {
+async function pullContents(params: DocPageParams) {
     const { path } = await params;
 
     const basePath = join(process.cwd(), 'src', 'docs', ...path.slice(0, -1));
